@@ -1291,43 +1291,43 @@ body { padding-top: 40px; }
     color: #fff;
     font-weight: 700;
     font-size: 14px;
-    padding: 7px 22px;
-    border-radius: 18px;
+    padding: 8px 24px;
+    border-radius: 4px;            /* botão quadrado (cantos suaves) */
     flex-shrink: 0;
   }
 
-  /* Ajusta body padding pra nova altura da barra mobile (48px) */
-  body { padding-top: 48px; }
+  /* Compensa login (48) + header (60) fixos */
+  body { padding-top: 108px; }
 
-  /* HEADER MOBILE — fixed com mudança de cor ao scroll */
+  /* HEADER MOBILE — fundo escuro sempre visível, igual oficial */
   .main-header {
     position: fixed;
-    top: 48px;                    /* após a barra login mobile (48px) */
+    top: 48px;
     left: 0;
     right: 0;
     height: 60px;
     padding: 0 16px;
-    background: transparent;      /* transparente em cima do banner */
+    background: #2a2a2a;          /* fundo escuro (igual ao oficial) */
     box-shadow: none;
     z-index: 90;
     align-items: center;
     pointer-events: auto;
     transition: background 0.3s, box-shadow 0.3s;
   }
+  /* Header permanece escuro sempre (mesmo ao scroll) */
   .main-header.scrolled {
-    background: #fff;             /* branco após scroll */
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-    height: 56px;
+    background: #2a2a2a;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    height: 60px;
     padding-top: 0;
   }
   .main-header__logo {
     width: auto;
-    height: 44px;
+    height: 40px;
     margin-top: 0;
-    filter: brightness(0) invert(1);    /* logo branca em cima do banner */
-    transition: filter 0.3s;
+    filter: brightness(0) invert(1);    /* logo sempre branca (fundo escuro) */
   }
-  .main-header.scrolled .main-header__logo { filter: none; }  /* volta cor normal */
+  .main-header.scrolled .main-header__logo { filter: brightness(0) invert(1); }
   .main-header__logo img { height: 44px; }
   .main-header__nav { display: none; }
   .main-header__search {
@@ -1385,10 +1385,11 @@ body { padding-top: 40px; }
     pointer-events: none;
   }
 
-  /* HERO MOBILE — banner vertical ocupando tela cheia */
+  /* HERO MOBILE — body padding-top já compensa login+header; prime bar flutua sobre */
   .hero {
     height: auto;
     background: #0b1a5a;
+    margin-top: 48px;              /* espaço pra barra "Prime" (48px) */
   }
   .hero__slides {
     position: relative;
