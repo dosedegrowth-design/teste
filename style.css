@@ -1,0 +1,1508 @@
+/* =========================================================
+   BRADESCO PRIME — Clone pixel-perfect
+   Cores reais extraídas do site oficial:
+   - Azul principal: #0E1E64 (rgb 14,30,100)
+   - Azul OK button: #3764AF (rgb 55,100,175)
+   - Texto input: #4D4E53 (rgb 77,78,83)
+   - Cinza "Como Usar": #6D6E71 (rgb 109,110,113)
+   - Texto geral: #1F1F1F (rgb 31,31,31)
+   ========================================================= */
+
+:root {
+  --blue: #0E1E64;
+  --blue-dark: #091744;
+  --blue-ok: #3764AF;
+  --gray-input: #4D4E53;
+  --gray-como-usar: #6D6E71;
+  --gray-text: #1F1F1F;
+  --gray-text-2: #535353;
+  --white: #ffffff;
+  --red-dot: #CC092F;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "BradescoSans", "Bradesco", "Helvetica Neue", Arial, sans-serif;
+  color: var(--gray-text);
+  background: #fff;
+  line-height: 1.4;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+ul { list-style: none; }
+
+/* ===================================================
+   BARRA DE LOGIN — 40px altura, azul #0E1E64
+   FIXED — permanece visível durante o scroll
+   =================================================== */
+.login-bar {
+  position: fixed;              /* ← fixa durante o scroll */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: var(--blue);
+  color: #fff;
+  z-index: 100;                 /* acima de tudo */
+}
+/* Compensa espaço da barra fixa pra o body não ficar atrás dela */
+body { padding-top: 40px; }
+.login-bar__inner {
+  max-width: 1320px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Form de login */
+.login-form {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex: 1;
+}
+
+.login-form__legend {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+.login-form__lock {
+  flex-shrink: 0;
+}
+
+/* Campos (agência + conta + dígito + ok + lembrar) */
+.login-form__fields {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.login-form__label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #fff;
+  white-space: nowrap;
+}
+.login-form__label input {
+  background: #fff;
+  border: none;
+  outline: none;
+  height: 28px;
+  border-radius: 30px;      /* ← muito arredondado, igual ao original */
+  padding: 0 10px;
+  font-size: 15px;
+  color: var(--gray-input);
+  font-family: inherit;
+}
+.login-form__label input[name="AGN"] { width: 55px; }
+.login-form__label input[name="CTA"] { width: 80px; }
+.login-form__digit {
+  width: 30px;
+  height: 28px;
+  background: #fff;
+  border: none;
+  outline: none;
+  border-radius: 30px;
+  text-align: center;
+  font-size: 15px;
+  color: var(--gray-input);
+  font-family: inherit;
+}
+.login-form__ok {
+  width: 30px;
+  height: 30px;
+  background: var(--blue-ok);   /* ← azul claro #3764AF, não escuro */
+  color: #fff;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.login-form__ok:hover { background: #2C5494; }
+
+.login-form__remember {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #fff;
+  cursor: pointer;
+  margin-left: 6px;
+}
+.login-form__remember input {
+  width: 13px;
+  height: 13px;
+  accent-color: #fff;
+}
+
+/* Como Usar link (cinza → background claro) */
+.login-form__como-usar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  padding: 0 12px;
+  height: 30px;
+  white-space: nowrap;
+}
+.login-form__como-usar:hover { text-decoration: underline; }
+
+/* Círculo vermelho com seta */
+.red-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--red-dot);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  padding-left: 1px;
+  padding-bottom: 1px;
+}
+.red-dot--sm { width: 16px; height: 16px; font-size: 12px; }
+
+/* Acessibilidade (direita) */
+.login-bar__right {
+  margin-left: auto;
+}
+.login-bar__acess {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+.login-bar__acess-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===================================================
+   HEADER (logo + nav + busca) — sobre o hero
+   =================================================== */
+/* Header absolute SOBRE o banner (oficial: top 40, z-index 4, altura 150px)
+   Logo top 90 (50px do topo do header), navSeg top 90 à direita
+*/
+.main-header {
+  position: fixed;                  /* fixed — acompanha scroll */
+  top: 40px;                        /* 40 = altura da barra de login */
+  left: 0;
+  right: 0;
+  height: 80px;
+  z-index: 90;                      /* abaixo da barra login (100), acima do menu (15) */
+  padding: 20px 60px 0 50px;
+  display: flex;
+  align-items: flex-start;
+  pointer-events: none;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+/* Quando o usuário rola, ativa fundo branco (adicionado via JS) */
+.main-header.scrolled {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  height: 70px;
+  padding-top: 8px;
+}
+.main-header.scrolled .main-header__logo { margin-top: 0; }
+.main-header.scrolled .nav-group,
+.main-header.scrolled .nav-group__link,
+.main-header.scrolled .nav-group__label { color: var(--blue); }
+.main-header > * { pointer-events: auto; }
+
+.main-header__logo {
+  width: 195px;
+  height: 58px;
+  flex-shrink: 0;
+  margin-top: 10px;            /* logo subiu 20px pra ficar mais afastada do menu */
+}
+.main-header__logo img {
+  height: 58px;
+  width: auto;
+}
+
+.main-header__nav {
+  margin-left: auto;
+  position: relative;
+  display: flex;
+  gap: 44px;
+  padding-right: 30px;
+}
+.nav-group {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  font-size: 13px;
+  line-height: 1.2;
+}
+.nav-group__label {
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 1px;
+}
+.nav-group__link {
+  color: #fff;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+}
+.nav-group__link .chev { font-size: 10px; }
+
+.main-header__search {
+  background: #fff;
+  color: var(--blue);
+  border-radius: 25px;
+  padding: 10px 18px;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+/* Hamburger — só mobile */
+.main-header__burger {
+  display: none;
+  color: #fff;
+  background: transparent;
+  padding: 8px;
+  margin-left: 10px;
+}
+.main-header.scrolled .main-header__burger { color: var(--blue); }
+
+/* ================= MOBILE DRAWER (fullscreen, substitui header) ================= */
+.mobile-drawer {
+  position: fixed;
+  top: 40px;                        /* abaixo da barra login fixa */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 95;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.25s ease;
+  pointer-events: none;
+}
+.mobile-drawer.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+/* Header fake dentro do drawer: logo + busca + X (no lugar do hamburger) */
+.mobile-drawer__header {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  height: 60px;
+  background: #2a2a2a;
+  color: #fff;
+}
+.mobile-drawer__header img {
+  height: 36px;
+  filter: brightness(0) invert(1);
+}
+.mobile-drawer__header-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.mobile-drawer__header-actions button {
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.mobile-drawer__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: var(--blue);
+  color: #fff;
+  padding: 16px;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+.mobile-drawer__list {
+  display: flex;
+  flex-direction: column;
+  background: #f2f2f2;
+}
+.mobile-drawer__list li a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  font-size: 15px;
+  color: var(--blue);
+  font-weight: 700;
+  border-bottom: 1px solid #d5d5d5;
+}
+.mobile-drawer__list li a:hover { background: #fff; }
+
+/* ================= MOBILE PRIME DRAWER (outros perfis) ================= */
+.prime-drawer {
+  position: fixed;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 110;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.25s ease;
+  pointer-events: none;
+}
+.prime-drawer.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.prime-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+.prime-drawer__header h2 {
+  color: var(--blue);
+  font-size: 22px;
+  font-weight: 700;
+}
+.prime-drawer__close {
+  color: var(--blue);
+  font-size: 24px;
+  padding: 6px;
+}
+.prime-drawer__list {
+  padding: 0 20px;
+}
+.prime-drawer__list li {
+  padding: 10px 0;
+  font-size: 17px;
+  color: var(--gray-text);
+  font-weight: 400;
+}
+.prime-drawer__section-title {
+  padding: 24px 0 12px;
+  color: var(--gray-text);
+  font-size: 17px;
+  font-weight: 700;
+}
+.prime-drawer__sublist li {
+  padding: 10px 0 10px 24px;
+  color: var(--gray-text);
+}
+
+/* Barra Prime mobile — oculta por padrão (desktop), só aparece no mobile via media query */
+.mobile-segment-bar { display: none; }
+
+/* Dropdowns do nav (Outros Perfis / Pra sua Empresa) */
+.nav-group {
+  position: relative;
+}
+.nav-group__link {
+  color: #fff;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+.nav-group__dropdown {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: 0;
+  min-width: 210px;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  padding: 8px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: all 0.2s;
+  z-index: 30;
+}
+.nav-group.open .nav-group__dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.nav-group__dropdown li a {
+  display: block;
+  padding: 10px 18px;
+  font-size: 14px;
+  color: var(--blue);
+  font-weight: 600;
+  transition: background 0.15s;
+}
+.nav-group__dropdown li a:hover {
+  background: #f0f2fa;
+}
+.nav-group.open .nav-group__link .chev {
+  transform: rotate(180deg);
+  display: inline-block;
+  transition: transform 0.2s;
+}
+.nav-group__link .chev { transition: transform 0.2s; }
+
+/* ================= SEARCH OVERLAY ================= */
+.search-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(14,30,100,0.96);
+  z-index: 200;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0s 0.3s;
+}
+.search-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s, visibility 0s;
+}
+.search-overlay__inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 40px;
+  color: #fff;
+}
+.search-overlay__close {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 30px;
+  margin-left: auto;
+}
+.search-overlay__x { font-size: 16px; }
+.search-overlay__box {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid rgba(255,255,255,0.4);
+  padding-bottom: 8px;
+  margin-bottom: 40px;
+}
+.search-overlay__box input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 300;
+  padding: 12px 0;
+  font-family: inherit;
+}
+.search-overlay__box input::placeholder { color: rgba(255,255,255,0.6); }
+.search-overlay__submit {
+  background: transparent;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+}
+.search-overlay__sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+.search-overlay__sections h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 18px;
+}
+.search-overlay__sections ul { display: flex; flex-direction: column; gap: 10px; }
+.search-overlay__sections a {
+  color: #fff;
+  font-size: 16px;
+  opacity: 0.9;
+  transition: opacity 0.15s;
+}
+.search-overlay__sections a:hover { opacity: 1; text-decoration: underline; }
+
+/* Separamos para você - cards */
+.search-overlay__picks { margin-top: 40px; }
+.search-overlay__picks h3 {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 16px;
+}
+.search-overlay__picks-list {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+.search-overlay__pick {
+  flex: 0 0 200px;
+  height: 130px;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 14px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  overflow: hidden;
+}
+.search-overlay__pick::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(14,30,100,0.7) 100%);
+}
+.search-overlay__pick span { position: relative; z-index: 1; }
+
+/* ===================================================
+   HERO + CARROSSEL
+   Oficial: top 40 (após barra login), altura 536px, width 100%.
+   Header + menu lateral FLUTUAM absolute sobre o banner.
+   =================================================== */
+.hero {
+  position: relative;
+  height: 0;
+  padding-bottom: 35.55%;
+  background: #0b1a5a;
+  max-height: 536px;
+  /* SEM overflow hidden — menu pode sobressair da borda inferior */
+}
+@supports (aspect-ratio: 1440/512) {
+  .hero {
+    height: auto;
+    padding-bottom: 0;
+    aspect-ratio: 1440/512;
+    max-height: 536px;
+  }
+}
+/* Contém a imagem do banner, mas permite menu ultrapassar */
+.hero__slides { overflow: hidden; }
+.hero__slides {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+.hero__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+  pointer-events: none;
+  overflow: hidden;
+}
+.hero__slide.active {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 2;
+}
+/* Banner: largura total + object-fit: contain pra nunca cortar as laterais.
+   A imagem inteira fica sempre visível (textos direito e esquerdo preservados). */
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;        /* ← mostra a imagem INTEIRA, sem cortar */
+  object-position: center;
+  display: block;
+  min-width: 0;
+  max-width: none;
+}
+
+/* Texto esquerdo */
+.hero__text h1 {
+  font-size: 48px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.05;
+  margin-bottom: 22px;
+  letter-spacing: -0.5px;
+}
+.hero__text p {
+  color: #fff;
+  font-size: 17px;
+  line-height: 1.4;
+  max-width: 480px;
+  margin-bottom: 40px;
+  font-weight: 400;
+}
+.hero__text small {
+  color: #fff;
+  font-size: 12px;
+  opacity: 0.9;
+  display: block;
+  position: absolute;
+  bottom: 34px;
+}
+
+.hero__text--light h1 { font-weight: 300; font-size: 42px; }
+
+.hero__subtitle-bold {
+  font-weight: 700 !important;
+  margin-bottom: 20px !important;
+  font-size: 16px !important;
+}
+.hero__lion-box {
+  background: rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 10px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  max-width: 440px;
+  margin-bottom: 16px;
+  color: #fff;
+  font-size: 14px;
+}
+.hero__lion-icon {
+  font-size: 30px;
+  flex-shrink: 0;
+}
+.hero__lion-box p { margin: 0 !important; font-size: 14px !important; line-height: 1.3 !important; }
+.hero__banco {
+  padding-left: 16px;
+  border-left: 1px solid rgba(255,255,255,0.4);
+  font-size: 12px;
+  line-height: 1.1;
+  text-align: center;
+}
+.hero__banco strong { font-size: 22px; font-weight: 300; }
+.hero__note {
+  position: relative !important;
+  bottom: auto !important;
+  font-size: 13px !important;
+}
+
+/* Bullets direita */
+.hero__bullets {
+  color: #fff;
+  align-self: center;
+  position: relative;
+  padding-top: 10px;
+}
+.hero__bullets ul {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.hero__bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.25;
+  color: #fff;
+}
+.hero__bullets .arrow {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 400;
+  flex-shrink: 0;
+}
+.hero__bullets-cta {
+  border: 1px solid rgba(255,255,255,0.55);
+  border-radius: 8px;
+  padding: 14px 22px;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+.hero__saiba-mais {
+  display: inline-block;
+  background: var(--blue);
+  color: #fff;
+  padding: 12px 42px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+}
+.hero__saiba-mais--ghost {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.5);
+  padding: 12px 30px;
+  position: static;
+  display: inline-block;
+  margin-top: 8px;
+}
+.hero__saiba-mais:hover { background: var(--blue-dark); }
+
+/* QR code slides */
+.hero__bullets--qr {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+.hero__qr {
+  background: #fff;
+  padding: 8px;
+  border-radius: 4px;
+}
+.hero__qr-placeholder {
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  background-image:
+    linear-gradient(45deg, #000 25%, transparent 25%),
+    linear-gradient(-45deg, #000 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #000 75%),
+    linear-gradient(-45deg, transparent 75%, #000 75%);
+  background-size: 8px 8px;
+  background-position: 0 0, 0 4px, 4px -4px, -4px 0;
+  border: 4px solid #fff;
+}
+.hero__qr-label {
+  color: #fff;
+  font-size: 13px;
+  line-height: 1.3;
+}
+.hero__qr-card {
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 10px;
+  padding: 18px;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.4;
+  max-width: 320px;
+  text-align: center;
+}
+.hero__qr-card .hero__qr-placeholder {
+  margin: 14px auto 0;
+}
+.hero__qr-cta { margin-top: 10px; font-size: 14px; }
+
+/* Dots */
+.hero__dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 10;
+}
+.hero__dots button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.6);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.hero__dots button.active {
+  background: transparent;
+  border: 2px solid var(--red-dot);
+  width: 14px;
+  height: 14px;
+}
+
+/* ===================================================
+   SIDE MENU (esquerda) — flutua absolute dentro do .hero
+   Oficial: começa ~130px abaixo do topo do banner
+   =================================================== */
+/* Menu lateral: width 195px, left 50px — encostado mais à esquerda pra não colidir com texto */
+.side-menu {
+  position: absolute;
+  top: 110px;
+  left: 50px;
+  width: 195px;
+  z-index: 15;
+}
+.side-menu__cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--blue);
+  color: #fff;
+  padding: 13px 16px;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+.side-menu__list {
+  background: #E9E9E9;            /* cinza claro/bege igual oficial */
+}
+.side-menu__li { position: relative; }
+.side-menu__item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.2;
+  border-bottom: 1px solid #d5d5d5;  /* divisória mais visível */
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+}
+.side-menu__item:hover,
+.side-menu__li.open .side-menu__item {
+  background: #fff;
+}
+.side-menu__list li:last-child .side-menu__item { border-bottom: none; }
+.side-menu__icon {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Submenu (painel que expande à direita) */
+.side-menu__submenu {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  min-width: 280px;
+  background: #fff;
+  border-left: 3px solid var(--blue);
+  box-shadow: 6px 6px 20px rgba(0,0,0,0.2);
+  padding: 20px 24px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-8px);
+  transition: all 0.2s;
+  z-index: 20;
+}
+.side-menu__li.open .side-menu__submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+.side-menu__submenu h3 {
+  color: var(--blue);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e5e5e5;
+}
+.side-menu__submenu ul { display: flex; flex-direction: column; gap: 2px; }
+.side-menu__submenu li a {
+  display: block;
+  padding: 8px 10px;
+  color: var(--gray-text);
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+.side-menu__submenu li a:hover {
+  background: #f0f2fa;
+  color: var(--blue);
+}
+
+/* ===================================================
+   EXCLUSIVIDADES
+   =================================================== */
+.exclusivities {
+  background: #f5f5f5;
+  padding: 70px 0 120px;
+}
+.exclusivities__container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+.exclusivities__title {
+  text-align: center;
+  color: var(--gray-text-2);
+  font-weight: 300;
+  font-size: 32px;
+  margin-bottom: 50px;
+}
+.exclusivities__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.excl-card {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+.excl-card__img {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+.excl-card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.excl-card__title {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  padding: 12px;
+  background: linear-gradient(180deg, rgba(14,30,100,0.25) 0%, rgba(14,30,100,0.45) 100%);
+}
+.excl-card__over {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-bottom: 3px;
+}
+.excl-card__title strong {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+}
+.excl-card p {
+  padding: 18px 22px 14px;
+  color: var(--gray-text-2);
+  font-size: 14px;
+  line-height: 1.4;
+  flex-grow: 1;
+}
+.excl-card__link {
+  padding: 0 22px 22px;
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.excl-card__arrow { font-size: 15px; }
+.excl-card__link:hover { text-decoration: underline; }
+
+/* ===================================================
+   CTA FIXED (Seja Cliente Prime)
+   =================================================== */
+.cta-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--blue);
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  z-index: 50;
+}
+
+/* ===================================================
+   FOOTER
+   =================================================== */
+.footer {
+  background: #fff;
+  color: var(--gray-text-2);
+  padding-bottom: 70px;
+}
+.footer__top {
+  padding: 24px 0 20px;
+  border-bottom: 1px solid #e5e5e5;
+}
+.footer__container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+.footer__top .footer__container {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  gap: 32px;
+}
+.footer__title {
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0;
+  text-align: left;
+}
+.footer__chev {
+  color: var(--blue);
+  margin-left: 10px;
+  font-size: 12px;
+}
+.footer__col .footer__phones { display: none; }
+.footer__col--open .footer__phones { display: grid; }
+.footer__col .footer__chev { transition: transform 0.2s; }
+.footer__col--open .footer__chev { transform: rotate(180deg); }
+.footer__phones {
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  margin-top: 14px;
+}
+.footer__phones > div { font-size: 12px; }
+.footer__phones span {
+  display: block;
+  color: var(--gray-text-2);
+  font-size: 11px;
+  margin-bottom: 4px;
+  min-height: 14px;
+}
+.footer__phones strong {
+  display: block;
+  color: var(--blue);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+.footer__phones small {
+  display: block;
+  color: var(--gray-text-2);
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+.footer__middle {
+  background: var(--blue);
+  color: #fff;
+  padding: 22px 0;
+}
+.footer__middle .footer__container {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.footer__social {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+.footer__social a {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.5);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer__social a:hover { background: rgba(255,255,255,0.1); }
+.footer__legal {
+  flex: 1;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #fff;
+}
+.footer__logo img {
+  height: 38px;
+  filter: brightness(0) invert(1);
+}
+
+.footer__bottom {
+  padding: 16px 0;
+}
+.footer__bottom ul {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 60px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 11px;
+  color: var(--gray-text-2);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.footer__bottom li {
+  padding: 3px 16px;
+  border-right: 1px solid #ccc;
+}
+.footer__bottom li:last-child { border-right: none; }
+.footer__bottom a:hover { color: var(--blue); }
+
+/* ===================================================
+   BIA FLOAT
+   =================================================== */
+.bia-float {
+  position: fixed;
+  right: 16px;
+  bottom: 80px;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #CC092F 0%, #8B0028 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.2;
+  z-index: 60;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  border: 3px solid #fff;
+}
+.bia-float strong {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+@media (max-width: 1200px) {
+  .login-form__fields { flex-wrap: wrap; }
+  .main-header__logo { padding-left: 240px; }
+  .hero__container { padding: 60px 40px 60px 290px; }
+  .hero__text h1 { font-size: 40px; }
+  .hero__bullets li { font-size: 18px; }
+  .exclusivities__grid { grid-template-columns: repeat(2, 1fr); }
+  .footer__phones { grid-template-columns: repeat(3, 1fr); }
+  .footer__top .footer__container { grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   MOBILE — Banner vertical completo + header simplificado
+   Os banners mobile são imagens verticais com todo o texto
+   embutido, então a estrutura é diferente do desktop.
+   ========================================================= */
+@media (max-width: 768px) {
+  /* BARRA LOGIN MOBILE — compacta */
+  .login-bar {
+    height: auto;
+    padding: 8px 0;
+  }
+  .login-bar__inner {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0 12px;
+    justify-content: space-between;
+  }
+  .login-form {
+    flex-wrap: wrap;
+    gap: 8px;
+    flex: 1 1 100%;
+    order: 2;
+  }
+  .login-form__legend { font-size: 11px; gap: 6px; }
+  .login-form__legend svg { width: 12px; height: 14px; }
+  .login-form__fields { gap: 6px; flex-wrap: wrap; }
+  .login-form__label { font-size: 12px; gap: 4px; }
+  .login-form__label input[name="AGN"] { width: 42px; }
+  .login-form__label input[name="CTA"] { width: 55px; }
+  .login-form__label input, .login-form__digit {
+    height: 24px;
+    font-size: 13px;
+  }
+  .login-form__ok { width: 26px; height: 26px; font-size: 11px; }
+  .login-form__remember { display: none; }          /* remove Lembrar-me */
+  .login-form__como-usar { display: none; }         /* remove Como Usar */
+  .login-bar__right { display: none; }              /* remove Acessibilidade no mobile */
+  .login-form__legend span { display: none; }       /* oculta "ACESSAR SUA CONTA" texto */
+  .login-form__legend { padding-right: 4px; }       /* só ícone cadeado */
+
+  /* HEADER MOBILE — fixed com mudança de cor ao scroll */
+  .main-header {
+    position: fixed;              /* fixed ao scroll */
+    top: 40px;                    /* após a barra login */
+    left: 0;
+    right: 0;
+    height: 60px;
+    padding: 0 16px;
+    background: transparent;      /* transparente em cima do banner */
+    box-shadow: none;
+    z-index: 90;
+    align-items: center;
+    pointer-events: auto;
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+  .main-header.scrolled {
+    background: #fff;             /* branco após scroll */
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    height: 56px;
+    padding-top: 0;
+  }
+  .main-header__logo {
+    width: auto;
+    height: 44px;
+    margin-top: 0;
+    filter: brightness(0) invert(1);    /* logo branca em cima do banner */
+    transition: filter 0.3s;
+  }
+  .main-header.scrolled .main-header__logo { filter: none; }  /* volta cor normal */
+  .main-header__logo img { height: 44px; }
+  .main-header__nav { display: none; }
+  .main-header__search {
+    padding: 8px 14px;
+    font-size: 13px;
+    background: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    margin-left: auto;
+    transition: all 0.3s;
+  }
+  .main-header.scrolled .main-header__search {
+    background: #fff;
+    color: var(--blue);
+    border-color: var(--blue);
+  }
+  .main-header__search svg { display: none; }      /* só ícone simplificado no mobile */
+
+  /* Hamburger visível no mobile */
+  .main-header__burger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Barra "Prime" mobile — aparece abaixo do header antes do scroll */
+  .mobile-segment-bar {
+    display: block;
+    position: fixed;
+    top: 100px;                   /* 40 login + 60 header */
+    left: 0;
+    right: 0;
+    background: #2a2a2a;          /* cinza escuro igual ao oficial */
+    color: #fff;
+    z-index: 85;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .mobile-segment-bar__btn {
+    width: 100%;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    background: transparent;
+  }
+  .mobile-segment-bar__btn .chev { font-size: 14px; }
+  /* Esconde a barra "Prime" quando scrolled */
+  .mobile-segment-bar.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* HERO MOBILE — banner vertical ocupando tela cheia */
+  .hero {
+    height: auto;
+    background: #0b1a5a;
+  }
+  .hero__slides {
+    position: relative;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 580 / 760;   /* proporção do banner mobile */
+  }
+  .hero__slide {
+    position: absolute;
+    inset: 0;
+  }
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    min-width: 0;              /* remove min-width do desktop */
+    max-width: 100%;
+  }
+
+  /* MENU LATERAL — vira CTA fixo no topo do conteúdo, não flutua */
+  .side-menu {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    background: #fff;
+  }
+  .side-menu__cta {
+    justify-content: center;
+    gap: 14px;
+    padding: 16px;
+    font-size: 14px;
+  }
+  .side-menu__list {
+    display: none;             /* oculto por padrão no mobile */
+  }
+
+  /* DOTS do carrossel mobile */
+  .hero__dots {
+    bottom: 14px;
+    gap: 8px;
+  }
+  .hero__dots button {
+    width: 8px; height: 8px;
+  }
+  .hero__dots button.active {
+    width: 12px; height: 12px;
+  }
+
+  /* EXCLUSIVIDADES MOBILE */
+  .exclusivities { padding: 40px 0 100px; }
+  .exclusivities__title {
+    font-size: 22px;
+    padding: 0 20px;
+    margin-bottom: 30px;
+  }
+  .exclusivities__grid { grid-template-columns: 1fr; gap: 20px; }
+  .exclusivities__container { padding: 0 20px; }
+
+  /* FOOTER MOBILE */
+  .footer__top .footer__container,
+  .footer__middle .footer__container {
+    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+    gap: 16px;
+    text-align: center;
+  }
+  .footer__phones { grid-template-columns: 1fr 1fr; }
+  .footer__social { justify-content: center; }
+  .footer__bottom ul {
+    flex-direction: column;
+    padding: 0 20px;
+    gap: 8px;
+  }
+  .footer__bottom li { border-right: none; padding: 4px 0; }
+
+  /* FLOATS MOBILE */
+  .bia-float {
+    width: 68px;
+    height: 68px;
+    font-size: 10px;
+    right: 10px;
+    bottom: 78px;
+    border-width: 2px;
+  }
+  .bia-float strong { font-size: 13px; }
+  .cta-fixed {
+    font-size: 13px;
+    padding: 16px 0;
+    letter-spacing: 0.5px;
+  }
+
+  /* BUSCA OVERLAY MOBILE */
+  .search-overlay__inner { padding: 30px 20px; }
+  .search-overlay__box input { font-size: 18px; }
+  .search-overlay__sections {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .search-overlay__sections h3 { font-size: 18px; }
+}
+
+/* Breakpoint extra pequeno (< 400px) */
+@media (max-width: 400px) {
+  .login-form__legend span { display: none; }
+  .main-header__logo { height: 38px; }
+  .main-header__logo img { height: 38px; }
+}
+
+/* Animação sutil */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.excl-card { animation: fadeIn 0.5s ease both; }

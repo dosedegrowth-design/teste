@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Banco Bradesco Prime: Aproveite benefícios exclusivos</title>
+  <meta name="description" content="Bradesco Prime — Soluções financeiras personalizadas, experiências exclusivas e atendimento diferenciado." />
+  <link rel="icon" type="image/png" href="assets/img/logo-prime.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ==================== BARRA DE LOGIN (TOPO) — FIXED 43px ==================== -->
+  <div class="login-bar">
+    <div class="login-bar__inner">
+
+      <!-- Form login esquerdo -->
+      <form class="login-form" onsubmit="return false;" aria-label="Acessar sua conta">
+        <div class="login-form__legend">
+          <svg class="login-form__lock" width="14" height="16" viewBox="0 0 14 16" fill="none" aria-hidden="true">
+            <rect x="1" y="7" width="12" height="8" rx="1" stroke="#fff" stroke-width="1.5"/>
+            <path d="M4 7V4a3 3 0 0 1 6 0v3" stroke="#fff" stroke-width="1.5"/>
+          </svg>
+          <span>ACESSAR SUA CONTA</span>
+        </div>
+
+        <div class="login-form__fields">
+          <label class="login-form__label">Agência:
+            <input type="text" maxlength="4" name="AGN" aria-label="Agência" />
+          </label>
+          <label class="login-form__label">Conta:
+            <input type="text" maxlength="7" name="CTA" aria-label="Conta" />
+          </label>
+          <input type="text" maxlength="1" name="DIGCTA" class="login-form__digit" aria-label="Dígito" />
+          <button type="submit" class="login-form__ok" aria-label="Entrar">OK</button>
+          <label class="login-form__remember">
+            <input type="checkbox" /> <span>Lembrar-me</span>
+          </label>
+        </div>
+
+        <a href="#" class="login-form__como-usar">
+          Como Usar
+          <span class="red-dot" aria-hidden="true">›</span>
+        </a>
+      </form>
+
+      <!-- Acessibilidade direita -->
+      <div class="login-bar__right">
+        <a href="#" class="login-bar__acess">
+          <span>ACESSIBILIDADE</span>
+          <span class="login-bar__acess-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#0E1E64">
+              <circle cx="12" cy="4" r="2"/>
+              <path d="M4 8l6 1v5l-2 7h2l2-6 2 6h2l-2-7V9l6-1V7l-8 1-8-1z"/>
+            </svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== HEADER (logo + nav) ==================== -->
+  <header class="main-header">
+    <a class="main-header__logo" href="#" aria-label="Bradesco Prime">
+      <img src="assets/img/logo-prime.png" alt="Bradesco Prime" />
+    </a>
+    <nav class="main-header__nav" aria-label="Perfis">
+      <div class="nav-group" data-dropdown="perfis">
+        <span class="nav-group__label">Outros</span>
+        <button type="button" class="nav-group__link">Perfis <span class="chev">˅</span></button>
+        <ul class="nav-group__dropdown">
+          <li><a href="#">Pra você</a></li>
+          <li><a href="#">Exclusive</a></li>
+          <li><a href="#">Principal</a></li>
+          <li><a href="#">Global Private</a></li>
+        </ul>
+      </div>
+      <div class="nav-group" data-dropdown="empresa">
+        <span class="nav-group__label">Pra sua</span>
+        <button type="button" class="nav-group__link">Empresa <span class="chev">˅</span></button>
+        <ul class="nav-group__dropdown">
+          <li><a href="#">Empresas e Negócios</a></li>
+          <li><a href="#">Bradesco Corporate</a></li>
+          <li><a href="#">MEI</a></li>
+          <li><a href="#">Agro</a></li>
+        </ul>
+      </div>
+    </nav>
+    <button class="main-header__search" type="button" aria-label="Busca" id="btnBusca">
+      Busca
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <circle cx="11" cy="11" r="7" stroke="#0E1E64" stroke-width="2"/>
+        <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#0E1E64" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <!-- Hamburger (mobile only) -->
+    <button class="main-header__burger" type="button" aria-label="Abrir menu" id="btnMobileMenu">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="3" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- ==================== MOBILE SEGMENT BAR "Prime" (aparece só antes do scroll) ==================== -->
+  <div class="mobile-segment-bar" id="mobileSegmentBar">
+    <button type="button" class="mobile-segment-bar__btn" id="btnOpenPrime">
+      <span>Prime</span>
+      <span class="chev">˅</span>
+    </button>
+  </div>
+
+  <!-- ==================== MOBILE DRAWER (menu hamburger fullscreen) ==================== -->
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <!-- Header escuro: logo + busca + X -->
+    <div class="mobile-drawer__header">
+      <img src="assets/img/logo-prime.png" alt="Bradesco Prime" />
+      <div class="mobile-drawer__header-actions">
+        <button type="button" aria-label="Busca">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+            <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <button type="button" aria-label="Fechar menu" id="btnCloseMobile">✕</button>
+      </div>
+    </div>
+    <!-- CTA Abra sua conta -->
+    <a class="mobile-drawer__cta" href="#">
+      ABRA SUA CONTA
+      <span class="side-menu__cta-arrow" aria-hidden="true">›</span>
+    </a>
+    <!-- Lista de items -->
+    <ul class="mobile-drawer__list">
+      <li><a href="#">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <rect x="3" y="6" width="18" height="14" rx="1.5" stroke="#0E1E64" stroke-width="1.6"/>
+          <path d="M8 6V4h8v2" stroke="#0E1E64" stroke-width="1.6"/>
+          <line x1="3" y1="11" x2="21" y2="11" stroke="#0E1E64" stroke-width="1.6"/>
+        </svg>
+        Produtos e Serviços
+      </a></li>
+      <li><a href="#">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <rect x="3" y="3" width="7" height="7" stroke="#0E1E64" stroke-width="1.6"/>
+          <rect x="14" y="3" width="7" height="7" stroke="#0E1E64" stroke-width="1.6"/>
+          <rect x="3" y="14" width="7" height="7" stroke="#0E1E64" stroke-width="1.6"/>
+          <rect x="14" y="14" width="7" height="7" stroke="#0E1E64" stroke-width="1.6"/>
+        </svg>
+        Viva Prime
+      </a></li>
+      <li><a href="#">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M4 20V11M10 20V5M16 20V14M21 20V8" stroke="#0E1E64" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        Investimentos
+      </a></li>
+      <li><a href="#">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <rect x="2" y="6" width="20" height="13" rx="1.5" stroke="#0E1E64" stroke-width="1.6"/>
+          <line x1="2" y1="11" x2="22" y2="11" stroke="#0E1E64" stroke-width="1.6"/>
+        </svg>
+        Cartão de Crédito
+      </a></li>
+      <li><a href="#">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="9" stroke="#0E1E64" stroke-width="1.6"/>
+          <line x1="12" y1="6" x2="12" y2="18" stroke="#0E1E64" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        Empréstimos e Financiamentos
+      </a></li>
+      <li><a href="#">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M5 4h3l2 5-2.5 1.3a11 11 0 0 0 6.2 6.2L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" stroke="#0E1E64" stroke-width="1.6"/>
+        </svg>
+        Atendimento
+      </a></li>
+    </ul>
+  </div>
+
+  <!-- ==================== PRIME DRAWER (perfis - Pra você, Exclusive, etc) ==================== -->
+  <div class="prime-drawer" id="primeDrawer" aria-hidden="true">
+    <div class="prime-drawer__header">
+      <h2>Prime</h2>
+      <button class="prime-drawer__close" id="btnClosePrime" aria-label="Fechar">✕</button>
+    </div>
+    <ul class="prime-drawer__list">
+      <li>Pra você</li>
+      <li>Exclusive</li>
+      <li>Principal</li>
+      <li>Global Private</li>
+      <li class="prime-drawer__section-title">Para sua Empresa</li>
+      <ul class="prime-drawer__sublist">
+        <li>Empresas e Negócios</li>
+        <li>Bradesco Corporate</li>
+      </ul>
+    </ul>
+  </div>
+
+  <!-- ==================== BUSCA OVERLAY (drawer) ==================== -->
+  <div class="search-overlay" id="searchOverlay" aria-hidden="true">
+    <div class="search-overlay__inner">
+      <button class="search-overlay__close" id="btnCloseBusca" aria-label="Fechar busca">
+        <span>Fechar</span>
+        <span class="search-overlay__x" aria-hidden="true">✕</span>
+      </button>
+      <div class="search-overlay__box">
+        <input type="search" placeholder="O que você procura?" aria-label="Campo de busca" />
+        <button type="button" class="search-overlay__submit" aria-label="Buscar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <circle cx="11" cy="11" r="7" stroke="#fff" stroke-width="2"/>
+            <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="search-overlay__sections">
+        <section>
+          <h3>MAIS BUSCADOS</h3>
+          <ul>
+            <li><a href="#">Crédito</a></li>
+            <li><a href="#">Abra Sua Conta</a></li>
+            <li><a href="#">Boleto</a></li>
+            <li><a href="#">Cartão De Crédito</a></li>
+            <li><a href="#">Ipva</a></li>
+          </ul>
+        </section>
+      </div>
+      <!-- Separamos para você - cards horizontais -->
+      <section class="search-overlay__picks">
+        <h3>SEPARAMOS PARA VOCÊ</h3>
+        <div class="search-overlay__picks-list">
+          <a href="#" class="search-overlay__pick" style="background-image:url('assets/img/card-beneficios.png')">
+            <span>Cartões</span>
+          </a>
+          <a href="#" class="search-overlay__pick" style="background-image:url('assets/img/card-medicos.png')">
+            <span>Financiamentos</span>
+          </a>
+          <a href="#" class="search-overlay__pick" style="background-image:url('assets/img/card-agora.png')">
+            <span>Investimentos</span>
+          </a>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ==================== HERO / CARROSSEL ==================== -->
+  <section class="hero" aria-label="Banner principal">
+    <!-- Slides — imagens com <picture> srcset (desktop horizontal / mobile vertical) -->
+    <div class="hero__slides">
+      <div class="hero__slide active" data-slide="0">
+        <picture>
+          <source media="(max-width: 768px)" srcset="assets/img/hero-mobile-credito.jpg">
+          <img class="hero__bg" src="assets/img/hero-credito-pessoal.jpg" alt="Crédito Pessoal Bradesco Prime — Taxas atrativas, até 90 dias para começar a pagar, prazo de até 72 meses" />
+        </picture>
+      </div>
+      <div class="hero__slide" data-slide="1">
+        <picture>
+          <source media="(max-width: 768px)" srcset="assets/img/hero-mobile-ir.jpg">
+          <img class="hero__bg" src="assets/img/hero-ir-reforco.jpg" alt="Declaração em dia: mente tranquila — Use nossa cartilha para sua declaração do IR 2026" />
+        </picture>
+      </div>
+      <div class="hero__slide" data-slide="2">
+        <picture>
+          <source media="(max-width: 768px)" srcset="assets/img/hero-mobile-seguro.jpg">
+          <img class="hero__bg" src="assets/img/hero-seguro-vida.jpg" alt="Seguro de Vida Bradesco — Segurança para você e para quem depende de você" />
+        </picture>
+      </div>
+      <div class="hero__slide" data-slide="3">
+        <picture>
+          <source media="(max-width: 768px)" srcset="assets/img/hero-mobile-previdencia.jpg">
+          <img class="hero__bg" src="assets/img/hero-previdencia.jpg" alt="Tá na hora de declarar seu Imposto de Renda — Previdência PGBL Bradesco Prime" />
+        </picture>
+      </div>
+    </div>
+
+    <!-- Dots do carrossel -->
+    <div class="hero__dots" role="tablist">
+      <button type="button" class="active" data-dot="0" aria-label="Slide 1"></button>
+      <button type="button" data-dot="1" aria-label="Slide 2"></button>
+      <button type="button" data-dot="2" aria-label="Slide 3"></button>
+      <button type="button" data-dot="3" aria-label="Slide 4"></button>
+    </div>
+
+    <!-- Menu lateral esquerdo (sobreposto) -->
+    <aside class="side-menu" aria-label="Menu de produtos">
+      <a class="side-menu__cta" href="#">
+        ABRA SUA CONTA
+        <span class="side-menu__cta-arrow" aria-hidden="true">›</span>
+      </a>
+      <ul class="side-menu__list">
+        <li class="side-menu__li">
+          <button type="button" class="side-menu__item">
+            <span class="side-menu__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="6" width="18" height="14" rx="1.5" stroke="#0E1E64" stroke-width="1.6"/>
+                <path d="M8 6V4h8v2" stroke="#0E1E64" stroke-width="1.6"/>
+                <line x1="3" y1="11" x2="21" y2="11" stroke="#0E1E64" stroke-width="1.6"/>
+              </svg>
+            </span>
+            <span>Produtos<br/>e Serviços</span>
+          </button>
+          <div class="side-menu__submenu">
+            <h3>Produtos e Serviços</h3>
+            <ul>
+              <li><a href="#">Conta Corrente</a></li>
+              <li><a href="#">Cartões</a></li>
+              <li><a href="#">Empréstimos</a></li>
+              <li><a href="#">Financiamentos</a></li>
+              <li><a href="#">Investimentos</a></li>
+              <li><a href="#">Previdência</a></li>
+              <li><a href="#">Seguros</a></li>
+              <li><a href="#">Câmbio e Moedas</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="side-menu__li">
+          <button type="button" class="side-menu__item">
+            <span class="side-menu__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="3" width="7" height="7" stroke="#0E1E64" stroke-width="1.6"/>
+                <rect x="14" y="3" width="7" height="7" stroke="#0E1E64" stroke-width="1.6"/>
+                <rect x="3" y="14" width="7" height="7" stroke="#0E1E64" stroke-width="1.6"/>
+                <rect x="14" y="14" width="7" height="7" stroke="#0E1E64" stroke-width="1.6"/>
+              </svg>
+            </span>
+            <span>Viva Prime</span>
+          </button>
+          <div class="side-menu__submenu">
+            <h3>Viva Prime</h3>
+            <ul>
+              <li><a href="#">Experiências Exclusivas</a></li>
+              <li><a href="#">Viagens e Turismo</a></li>
+              <li><a href="#">Gastronomia</a></li>
+              <li><a href="#">Cultura e Lazer</a></li>
+              <li><a href="#">Descontos e Benefícios</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="side-menu__li">
+          <button type="button" class="side-menu__item">
+            <span class="side-menu__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M4 20V11M10 20V5M16 20V14M21 20V8" stroke="#0E1E64" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span>Investimentos</span>
+          </button>
+          <div class="side-menu__submenu">
+            <h3>Investimentos</h3>
+            <ul>
+              <li><a href="#">Renda Fixa</a></li>
+              <li><a href="#">Renda Variável</a></li>
+              <li><a href="#">Fundos de Investimento</a></li>
+              <li><a href="#">Tesouro Direto</a></li>
+              <li><a href="#">Previdência Privada</a></li>
+              <li><a href="#">Ágora Investimentos</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="side-menu__li">
+          <button type="button" class="side-menu__item">
+            <span class="side-menu__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <rect x="2" y="6" width="20" height="13" rx="1.5" stroke="#0E1E64" stroke-width="1.6"/>
+                <line x1="2" y1="11" x2="22" y2="11" stroke="#0E1E64" stroke-width="1.6"/>
+              </svg>
+            </span>
+            <span>Cartão de<br/>Crédito</span>
+          </button>
+          <div class="side-menu__submenu">
+            <h3>Cartão de Crédito</h3>
+            <ul>
+              <li><a href="#">Visa Infinite</a></li>
+              <li><a href="#">Mastercard Black</a></li>
+              <li><a href="#">American Express</a></li>
+              <li><a href="#">Programa de Pontos</a></li>
+              <li><a href="#">Benefícios Exclusivos</a></li>
+              <li><a href="#">Fatura e Pagamentos</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="side-menu__li">
+          <button type="button" class="side-menu__item">
+            <span class="side-menu__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="9" stroke="#0E1E64" stroke-width="1.6"/>
+                <path d="M15 9c0-1-1.3-1.5-3-1.5S9 8 9 9s1 1.3 3 1.8S15 11.8 15 13s-1.3 1.5-3 1.5-3-.5-3-1.5" stroke="#0E1E64" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+                <line x1="12" y1="6" x2="12" y2="18" stroke="#0E1E64" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span>Empréstimos e<br/>Financiamentos</span>
+          </button>
+          <div class="side-menu__submenu">
+            <h3>Empréstimos e Financiamentos</h3>
+            <ul>
+              <li><a href="#">Crédito Pessoal</a></li>
+              <li><a href="#">Crédito com Garantia</a></li>
+              <li><a href="#">Financiamento Imobiliário</a></li>
+              <li><a href="#">Financiamento de Veículos</a></li>
+              <li><a href="#">Consignado</a></li>
+              <li><a href="#">Antecipação de Restituição IR</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="side-menu__li">
+          <button type="button" class="side-menu__item">
+            <span class="side-menu__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M5 4h3l2 5-2.5 1.3a11 11 0 0 0 6.2 6.2L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" stroke="#0E1E64" stroke-width="1.6" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span>Atendimento</span>
+          </button>
+          <div class="side-menu__submenu">
+            <h3>Atendimento</h3>
+            <ul>
+              <li><a href="#">Fale com o Gerente</a></li>
+              <li><a href="#">Fone Fácil - 4002 0022</a></li>
+              <li><a href="#">SAC Alô Bradesco</a></li>
+              <li><a href="#">Ouvidoria</a></li>
+              <li><a href="#">Agências e Caixas Eletrônicos</a></li>
+              <li><a href="#">BIA - Bradesco Inteligência Artificial</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </aside>
+  </section>
+
+  <!-- ==================== EXCLUSIVIDADES ==================== -->
+  <section class="exclusivities">
+    <div class="exclusivities__container">
+      <h2 class="exclusivities__title">Exclusividades Bradesco Prime</h2>
+
+      <div class="exclusivities__grid">
+        <article class="excl-card">
+          <div class="excl-card__img">
+            <img src="assets/img/card-viva.png" alt="Experiências Viva Prime" />
+            <div class="excl-card__title">
+              <span class="excl-card__over">O MELHOR DAS</span>
+              <strong>EXPERIÊNCIAS</strong>
+            </div>
+          </div>
+          <p>Parcerias exclusivas pra você ter experiências únicas no Brasil e no exterior com o programa Viva Prime.</p>
+          <a href="#" class="excl-card__link"><span class="excl-card__arrow">→</span> Aproveite</a>
+        </article>
+
+        <article class="excl-card">
+          <div class="excl-card__img">
+            <img src="assets/img/card-beneficios.png" alt="Os melhores benefícios" />
+            <div class="excl-card__title">
+              <span class="excl-card__over">OS MELHORES</span>
+              <strong>BENEFÍCIOS</strong>
+            </div>
+          </div>
+          <p>Você pode ganhar até 100% de isenção na tarifa da conta e na anuidade no cartão de crédito.</p>
+          <a href="#" class="excl-card__link"><span class="excl-card__arrow">→</span> Saiba mais</a>
+        </article>
+
+        <article class="excl-card">
+          <div class="excl-card__img">
+            <img src="assets/img/card-medicos.png" alt="Clientes médicos" />
+            <div class="excl-card__title">
+              <span class="excl-card__over">O MELHOR PARA</span>
+              <strong>CLIENTES MÉDICOS</strong>
+            </div>
+          </div>
+          <p>Enquanto você se dedica ao mais importante, nós cuidamos da sua saúde financeira com soluções que facilitam seu dia a dia.</p>
+          <a href="#" class="excl-card__link"><span class="excl-card__arrow">→</span> Confira</a>
+        </article>
+
+        <article class="excl-card">
+          <div class="excl-card__img">
+            <img src="assets/img/card-agora.png" alt="Ágora Banco + Corretora" />
+            <div class="excl-card__title">
+              <span class="excl-card__over">O MELHOR DOS DOIS MUNDOS:</span>
+              <strong>BANCO + CORRETORA</strong>
+            </div>
+          </div>
+          <p>Conheça a Ágora, sua casa de investimentos.</p>
+          <a href="#" class="excl-card__link"><span class="excl-card__arrow">→</span> Saiba mais</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA FIXED ==================== -->
+  <a class="cta-fixed" href="#">
+    SEJA CLIENTE PRIME
+    <span class="red-dot red-dot--sm">›</span>
+  </a>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__container">
+        <div class="footer__col">
+          <button class="footer__title">INFORMAÇÕES ÚTEIS <span class="footer__chev">˅</span></button>
+        </div>
+        <div class="footer__col footer__col--open">
+          <button class="footer__title">FONE FÁCIL, SAC E OUVIDORIA <span class="footer__chev">˄</span></button>
+          <div class="footer__phones">
+            <div><span>Fone Fácil</span><strong>4002 0022</strong><small>Capitais / Regiões Metropolitanas</small></div>
+            <div><span>&nbsp;</span><strong>0800 570 0022</strong><small>Demais Regiões</small></div>
+            <div><span>&nbsp;</span><strong>55 11 4002 0022</strong><small>Acesso Do Exterior</small></div>
+            <div><span>&nbsp;</span><strong>0800 722 0099</strong><small>Deficiência Auditiva/Fala</small></div>
+            <div><span>Sac Alô Bradesco</span><strong>0800 704 8383</strong><small>Demais SACs</small></div>
+            <div><span>Ouvidoria</span><strong>0800 727 9933</strong><small>Fale com a Ouvidoria</small></div>
+          </div>
+        </div>
+        <div class="footer__col">
+          <button class="footer__title">BIA <span class="footer__chev">˅</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__middle">
+      <div class="footer__container">
+        <div class="footer__social">
+          <span>ACOMPANHE:</span>
+          <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM8 17H5.5v-7H8v7zM6.75 8.75a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM18 17h-2.5v-3.5c0-1 -.5-1.5-1.25-1.5s-1.25.5-1.25 1.5V17H10.5v-7H13v1c.5-.75 1.25-1.25 2.25-1.25 1.75 0 2.75 1.25 2.75 3V17z"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M13 21v-8h3l.5-3H13V8c0-1 .5-1.5 1.5-1.5H17V4h-2.5C12 4 10.5 5.5 10.5 8v2H8v3h2.5v8H13z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M21.5 8s-.2-1.5-.8-2.2c-.8-.8-1.6-.8-2-.9C15.8 4.6 12 4.6 12 4.6s-3.8 0-6.7.3c-.4.1-1.3.1-2 .9-.6.7-.8 2.2-.8 2.2S2.3 9.7 2.3 11.5v1.7c0 1.8.2 3.5.2 3.5s.2 1.5.8 2.2c.8.8 1.8.8 2.3.9 1.7.2 7.1.3 7.1.3s3.8 0 6.7-.3c.4-.1 1.3-.1 2-.9.6-.7.8-2.2.8-2.2s.2-1.7.2-3.5v-1.7c0-1.8-.2-3.5-.2-3.5zM9.8 15V9l5 3-5 3z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff"/></svg></a>
+        </div>
+
+        <p class="footer__legal">
+          Banco Bradesco SA | CNPJ: 60.746.948.0001-12 | Cidade de Deus, s/nº<br/>
+          Vila Yara | Osasco | SP | CEP: 06029-900
+        </p>
+
+        <div class="footer__logo">
+          <img src="assets/img/logo-prime.png" alt="Bradesco Prime" />
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <ul>
+        <li><a href="#">BRADESCO EXPLICA</a></li>
+        <li><a href="#">BRADESCO IMPRENSA</a></li>
+        <li><a href="#">TRABALHE CONOSCO</a></li>
+        <li><a href="#">SEGURANÇA</a></li>
+        <li><a href="#">INTEGRIDADE</a></li>
+        <li><a href="#">CRÉDITO RESPONSÁVEL</a></li>
+        <li><a href="#">RELAÇÃO COM INVESTIDORES</a></li>
+        <li><a href="#">PREFERÊNCIA COOKIES</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- BIA float -->
+  <a class="bia-float" href="#" aria-label="BIA no WhatsApp">
+    <span><strong>BIA</strong> no<br/>WhatsApp</span>
+  </a>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
