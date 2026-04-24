@@ -1299,7 +1299,7 @@ body { padding-top: 40px; }
   /* Compensa login (48) + header (60) fixos */
   body { padding-top: 108px; }
 
-  /* HEADER MOBILE — fundo escuro sempre visível, igual oficial */
+  /* HEADER MOBILE — layout flex simples: logo | 🔍 | ☰ */
   .main-header {
     position: fixed;
     top: 48px;
@@ -1310,69 +1310,74 @@ body { padding-top: 40px; }
     background: #2a2a2a;
     box-shadow: none;
     z-index: 90;
+    display: flex;
     align-items: center;
-    justify-content: flex-start;  /* alinha à esquerda, nav fica com margin-left auto */
+    justify-content: space-between;  /* logo à esquerda, ícones à direita */
     pointer-events: auto;
-    transition: background 0.3s, box-shadow 0.3s;
-    gap: 10px;
+    gap: 0;
+    transition: background 0.3s;
   }
-  /* Header permanece escuro sempre (mesmo ao scroll) */
   .main-header.scrolled {
     background: #2a2a2a;
     box-shadow: 0 1px 4px rgba(0,0,0,0.3);
     height: 60px;
     padding-top: 0;
   }
+
+  /* Logo à esquerda */
   .main-header__logo {
     width: auto;
-    height: 38px;
-    margin-top: 0;
-    filter: brightness(0) invert(1);
+    height: 40px;
+    margin: 0;
+    padding: 0;
     flex-shrink: 0;
+    filter: brightness(0) invert(1);
+    order: 1;
   }
   .main-header.scrolled .main-header__logo { filter: brightness(0) invert(1); }
-  .main-header__logo img { height: 38px; }
-  .main-header__nav { display: none; }
-  .main-header__search {
-    padding: 0;
-    width: 36px;
-    height: 36px;
-    background: transparent;
-    color: #fff;
-    border: none;
-    border-radius: 0;
-    margin-left: auto;
-    display: flex;
+  .main-header__logo img { height: 40px; width: auto; }
+
+  /* Esconde o nav de perfis no mobile */
+  .main-header__nav { display: none !important; }
+
+  /* Grupo de ações à direita: busca + hamburger */
+  .main-header__search,
+  .main-header__burger {
+    display: flex !important;
     align-items: center;
     justify-content: center;
-    font-size: 0;                 /* esconde texto "Busca" no mobile */
-  }
-  .main-header.scrolled .main-header__search {
-    background: transparent;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    margin: 0;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0;
     color: #fff;
-    border: none;
+    flex-shrink: 0;
+    font-size: 0;                     /* remove texto "Busca" */
+  }
+  .main-header__search {
+    order: 2;
+    margin-left: auto;                /* empurra pra direita */
+    margin-right: 8px;
+  }
+  .main-header__burger {
+    order: 3;
   }
   .main-header__search svg {
     display: block;
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
   }
   .main-header__search svg circle,
-  .main-header__search svg line { stroke: #fff; }
-
-  /* Hamburger visível no mobile */
-  .main-header__burger {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    color: #fff;
-    margin-left: 4px;
-    padding: 0;
-    flex-shrink: 0;
+  .main-header__search svg line { stroke: #fff !important; }
+  .main-header__burger svg {
+    display: block;
+    width: 26px;
+    height: 26px;
   }
-  .main-header__burger svg { width: 22px; height: 22px; }
+  .main-header__burger svg line { stroke: #fff !important; }
 
   /* Barra "Prime" mobile — aparece abaixo do header antes do scroll */
   .mobile-segment-bar {
