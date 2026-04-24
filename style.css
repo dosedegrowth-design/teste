@@ -42,17 +42,19 @@ ul { list-style: none; }
    FIXED — permanece visível durante o scroll
    =================================================== */
 .login-bar {
-  position: fixed;              /* ← fixa durante o scroll */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 40px;
   background: var(--blue);
   color: #fff;
-  z-index: 100;                 /* acima de tudo */
+  z-index: 100;
 }
-/* Compensa espaço da barra fixa pra o body não ficar atrás dela */
 body { padding-top: 40px; }
+
+/* Mobile-only message: oculta por padrão (desktop) */
+.login-bar__mobile { display: none; }
 .login-bar__inner {
   max-width: 1320px;
   height: 100%;
@@ -307,7 +309,7 @@ body { padding-top: 40px; }
 /* ================= MOBILE DRAWER (fullscreen, substitui header) ================= */
 .mobile-drawer {
   position: fixed;
-  top: 40px;                        /* abaixo da barra login fixa */
+  top: 48px;                        /* abaixo da barra login mobile */
   left: 0;
   right: 0;
   bottom: 0;
@@ -387,7 +389,7 @@ body { padding-top: 40px; }
 /* ================= MOBILE PRIME DRAWER (outros perfis) ================= */
 .prime-drawer {
   position: fixed;
-  top: 40px;
+  top: 48px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -1261,44 +1263,46 @@ body { padding-top: 40px; }
    embutido, então a estrutura é diferente do desktop.
    ========================================================= */
 @media (max-width: 768px) {
-  /* BARRA LOGIN MOBILE — compacta */
+  /* BARRA LOGIN MOBILE — oculta form complexo, mostra mensagem app */
   .login-bar {
-    height: auto;
-    padding: 8px 0;
+    height: 48px;
+    padding: 0;
   }
-  .login-bar__inner {
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 0 12px;
+  .login-bar__inner { display: none; }              /* esconde form completo no mobile */
+
+  /* Mensagem do app Bradesco */
+  .login-bar__mobile {
+    display: flex;
+    align-items: center;
     justify-content: space-between;
+    height: 100%;
+    padding: 0 16px;
+    gap: 12px;
   }
-  .login-form {
-    flex-wrap: wrap;
-    gap: 8px;
-    flex: 1 1 100%;
-    order: 2;
-  }
-  .login-form__legend { font-size: 11px; gap: 6px; }
-  .login-form__legend svg { width: 12px; height: 14px; }
-  .login-form__fields { gap: 6px; flex-wrap: wrap; }
-  .login-form__label { font-size: 12px; gap: 4px; }
-  .login-form__label input[name="AGN"] { width: 42px; }
-  .login-form__label input[name="CTA"] { width: 55px; }
-  .login-form__label input, .login-form__digit {
-    height: 24px;
+  .login-bar__mobile span {
+    color: #fff;
     font-size: 13px;
+    font-weight: 700;
+    flex: 1;
+    text-align: center;
   }
-  .login-form__ok { width: 26px; height: 26px; font-size: 11px; }
-  .login-form__remember { display: none; }          /* remove Lembrar-me */
-  .login-form__como-usar { display: none; }         /* remove Como Usar */
-  .login-bar__right { display: none; }              /* remove Acessibilidade no mobile */
-  .login-form__legend span { display: none; }       /* oculta "ACESSAR SUA CONTA" texto */
-  .login-form__legend { padding-right: 4px; }       /* só ícone cadeado */
+  .login-bar__mobile-ok {
+    background: var(--blue-ok);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 7px 22px;
+    border-radius: 18px;
+    flex-shrink: 0;
+  }
+
+  /* Ajusta body padding pra nova altura da barra mobile (48px) */
+  body { padding-top: 48px; }
 
   /* HEADER MOBILE — fixed com mudança de cor ao scroll */
   .main-header {
-    position: fixed;              /* fixed ao scroll */
-    top: 40px;                    /* após a barra login */
+    position: fixed;
+    top: 48px;                    /* após a barra login mobile (48px) */
     left: 0;
     right: 0;
     height: 60px;
@@ -1354,7 +1358,7 @@ body { padding-top: 40px; }
   .mobile-segment-bar {
     display: block;
     position: fixed;
-    top: 100px;                   /* 40 login + 60 header */
+    top: 108px;                   /* 48 login + 60 header */
     left: 0;
     right: 0;
     background: #2a2a2a;          /* cinza escuro igual ao oficial */
